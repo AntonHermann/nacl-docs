@@ -88,7 +88,7 @@ If the signature fails verification, `crypto_sign_open` instead returns `-1`, po
 
 The `crypto_sign` function is designed to meet the standard notion of unforgeability for a public-key signature scheme under chosen-message attacks.
 
-See [Validation](valid.md) regarding safe message lengths.
+See [Validation](../valid.md) regarding safe message lengths.
 
 ## Selected primitive
 

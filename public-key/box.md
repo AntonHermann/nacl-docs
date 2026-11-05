@@ -142,11 +142,11 @@ The `crypto_box` function is not meant to provide non-repudiation. On the contra
 
 Users who want public verifiability (or receiver-assisted public verifiability) should instead use signatures (or signcryption). Signature support is a high priority for NaCl; a signature API will be described in subsequent NaCl documentation.
 
-See [Validation](valid.md) regarding safe message lengths.
+See [Validation](../valid.md) regarding safe message lengths.
 
 ## Selected primitive
 
-`crypto_box` is `curve25519xsalsa20poly1305`, a particular combination of Curve25519, Salsa20, and Poly1305 specified in ["Cryptography in NaCl"](valid.md). This function is conjectured to meet the standard notions of privacy and third-party unforgeability.
+`crypto_box` is `curve25519xsalsa20poly1305`, a particular combination of Curve25519, Salsa20, and Poly1305 specified in ["Cryptography in NaCl"](../valid.md). This function is conjectured to meet the standard notions of privacy and third-party unforgeability.
 
 ## Alternate primitives
 

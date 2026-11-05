@@ -58,11 +58,11 @@ The `crypto_onetimeauth` function, viewed as a function of the message for a uni
 
 The sender must not use `crypto_onetimeauth` to authenticate more than one message under the same key. Authenticators for two messages under the same key should be expected to reveal enough information to allow forgeries of authenticators on other messages.
 
-See [Validation](valid.md) regarding safe message lengths.
+See [Validation](../valid.md) regarding safe message lengths.
 
 ## Selected primitive
 
-`crypto_onetimeauth` is `crypto_onetimeauth_poly1305`, an authenticator specified in ["Cryptography in NaCl"](valid.md), Section 9. This authenticator is *proven* to meet the standard notion of unforgeability after a single message.
+`crypto_onetimeauth` is `crypto_onetimeauth_poly1305`, an authenticator specified in ["Cryptography in NaCl"](../valid.md), Section 9. This authenticator is *proven* to meet the standard notion of unforgeability after a single message.
 
 ## Alternate primitives
 
