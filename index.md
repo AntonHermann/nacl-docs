@@ -6,7 +6,7 @@ Of course, other libraries already exist for these core operations. NaCl advance
 
 The following report contrasts NaCl with other libraries from a security perspective: [(PDF)](https://cr.yp.to/highspeed/coolnacl-20120725.pdf) Daniel J. Bernstein, Tanja Lange, Peter Schwabe, "The security impact of a new cryptographic library". Pages 159–176 in Proceedings of LatinCrypt 2012, edited by Alejandro Hevia and Gregory Neven, Lecture Notes in Computer Science 7533, Springer, 2012. ISBN 978-3-642-33480-1.
 
-The following report was created for Research Plaza and gives an introduction to NaCl for a wider audience: [(PDF)](securing-communication.pdf)
+The following report was created for Research Plaza and gives an introduction to NaCl for a wider audience: [(PDF)](https://nacl.cr.yp.to/securing-communication.pdf)
 
 ## Upcoming features
 

@@ -69,11 +69,11 @@ Note that the length is not hidden. Note also that it is the caller's responsibi
 
 NaCl does not make any promises regarding the resistance of `crypto_stream` to "related-key attacks." It is the caller's responsibility to use proper key-derivation functions.
 
-See [Validation](valid.html) regarding safe message lengths.
+See [Validation](valid.md) regarding safe message lengths.
 
 ## Selected primitive
 
-`crypto_stream` is `crypto_stream_xsalsa20`, a particular cipher specified in ["Cryptography in NaCl"](valid.html), Section 7. This cipher is conjectured to meet the standard notion of unpredictability.
+`crypto_stream` is `crypto_stream_xsalsa20`, a particular cipher specified in ["Cryptography in NaCl"](valid.md), Section 7. This cipher is conjectured to meet the standard notion of unpredictability.
 
 ## Alternate primitives
 

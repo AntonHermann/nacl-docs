@@ -58,7 +58,7 @@ The `crypto_auth` function, viewed as a function of the message for a uniform ra
 
 NaCl does not make any promises regarding "strong" unforgeability; perhaps one valid authenticator can be converted into another valid authenticator for the same message. NaCl also does not make any promises regarding "truncated unforgeability."
 
-See [Validation](valid.html) regarding safe message lengths.
+See [Validation](valid.md) regarding safe message lengths.
 
 ## Selected primitive
 

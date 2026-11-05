@@ -30,7 +30,7 @@ The `crypto_hash` function hashes a message `m[0]`, `m[1]`, ..., `m[mlen-1]`. It
 
 The `crypto_hash` function is designed to be usable as a strong component of DSA, RSA-PSS, key derivation, hash-based message-authentication codes, hash-based ciphers, and various other common applications. "Strong" means that the security of these applications, when instantiated with `crypto_hash`, is the same as the security of the applications against generic attacks. In particular, the `crypto_hash` function is designed to make finding collisions difficult.
 
-See [Validation](valid.html) regarding safe message lengths.
+See [Validation](valid.md) regarding safe message lengths.
 
 ## Selected primitive
 
