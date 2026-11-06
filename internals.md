@@ -12,29 +12,35 @@ There are an increasing number of cases where the C implementations and assembly
 
 The reference SHA-512 implementation in NaCl is `crypto_hash/sha512/ref/hash.c`, which defines a `crypto_hash` function as follows:
 
-         #include "crypto_hash.h"
+```c
+#include "crypto_hash.h"
 
-         int crypto_hash(unsigned char *out,const unsigned char *in,unsigned long long inlen)
-         {
-           ...
-         }
+int crypto_hash(unsigned char *out,const unsigned char *in,unsigned long long inlen)
+{
+  ...
+}
+```
 
 An accompanying file `crypto_hash/sha512/ref/api.h` says
 
-         #define CRYPTO_BYTES 64
+```c
+#define CRYPTO_BYTES 64
+```
 
 to indicate that this function produces a 64-byte hash.
 
 The NaCl compilation scripts automatically create `crypto_hash.h` with various macros, including the following:
 
-         #define crypto_hash crypto_hash_sha512
-         #define crypto_hash_sha512 crypto_hash_sha512_ref
-         #define crypto_hash_BYTES crypto_hash_sha512_BYTES
-         #define crypto_hash_sha512_BYTES crypto_hash_sha512_ref_BYTES
-         #define crypto_hash_sha512_ref_BYTES 64
-         #define crypto_hash_PRIMITIVE "sha512"
-         #define crypto_hash_IMPLEMENTATION crypto_hash_sha512_IMPLEMENTATION
-         #define crypto_hash_sha512_IMPLEMENTATION "crypto_hash/sha512/ref"
+```c
+#define crypto_hash crypto_hash_sha512
+#define crypto_hash_sha512 crypto_hash_sha512_ref
+#define crypto_hash_BYTES crypto_hash_sha512_BYTES
+#define crypto_hash_sha512_BYTES crypto_hash_sha512_ref_BYTES
+#define crypto_hash_sha512_ref_BYTES 64
+#define crypto_hash_PRIMITIVE "sha512"
+#define crypto_hash_IMPLEMENTATION crypto_hash_sha512_IMPLEMENTATION
+#define crypto_hash_sha512_IMPLEMENTATION "crypto_hash/sha512/ref"
+```
 
 This means that `hash.c` actually defines a `crypto_hash_sha512_ref` function. Normally, as an implementor, you don't have to think about this; but if you avoid including `crypto_hash.h` (for example, because you're actually writing `hash.s` instead of `hash.c`) then you should make sure to define `crypto_hash_sha512_ref`.
 

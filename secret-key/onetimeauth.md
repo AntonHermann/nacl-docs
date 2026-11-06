@@ -4,25 +4,29 @@
 
 C++ NaCl provides a `crypto_onetimeauth` function callable as follows:
 
-         #include "crypto_onetimeauth.h"
+```cpp
+#include "crypto_onetimeauth.h"
 
-         std::string k;
-         std::string m;
-         std::string a;
+std::string k;
+std::string m;
+std::string a;
 
-         a = crypto_onetimeauth(m,k);
+a = crypto_onetimeauth(m,k);
+```
 
 The `crypto_onetimeauth` function authenticates a message `m` using a secret key `k`, and returns an authenticator `a`. The authenticator length is always `crypto_onetimeauth_BYTES`. The function raises an exception if `k.size()` is not `crypto_onetimeauth_KEYBYTES`.
 
 C++ NaCl also provides a `crypto_onetimeauth_verify` function callable as follows:
 
-         #include "crypto_onetimeauth.h"
+```cpp
+#include "crypto_onetimeauth.h"
 
-         std::string k;
-         std::string m;
-         std::string a;
+std::string k;
+std::string m;
+std::string a;
 
-         crypto_onetimeauth_verify(a,m,k);
+crypto_onetimeauth_verify(a,m,k);
+```
 
 This function checks that `k.size()` is `crypto_onetimeauth_KEYBYTES`; `a.size()` is `crypto_onetimeauth_BYTES`; and `a` is a correct authenticator of a message `m` under the secret key `k`. If any of these checks fail, the function raises an exception.
 
@@ -30,25 +34,29 @@ This function checks that `k.size()` is `crypto_onetimeauth_KEYBYTES`; `a.size()
 
 C NaCl provides a `crypto_onetimeauth` function callable as follows:
 
-         #include "crypto_onetimeauth.h"
+```c
+#include "crypto_onetimeauth.h"
 
-         const unsigned char k[crypto_onetimeauth_KEYBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char a[crypto_onetimeauth_BYTES];
+const unsigned char k[crypto_onetimeauth_KEYBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char a[crypto_onetimeauth_BYTES];
 
-         crypto_onetimeauth(a,m,mlen,k);
+crypto_onetimeauth(a,m,mlen,k);
+```
 
 The `crypto_onetimeauth` function authenticates a message `m[0]`, `m[1]`, ..., `m[mlen-1]` using a secret key `k[0]`, `k[1]`, ..., `k[crypto_onetimeauth_KEYBYTES-1]`; puts the authenticator into `a[0]`, `a[1]`, ..., `a[crypto_onetimeauth_BYTES-1]`; and returns 0.
 
 C NaCl also provides a `crypto_onetimeauth_verify` function callable as follows:
 
-         #include "crypto_onetimeauth.h"
+```c
+#include "crypto_onetimeauth.h"
 
-         const unsigned char k[crypto_onetimeauth_KEYBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         const unsigned char a[crypto_onetimeauth_BYTES];
+const unsigned char k[crypto_onetimeauth_KEYBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+const unsigned char a[crypto_onetimeauth_BYTES];
 
-         crypto_onetimeauth_verify(a,m,mlen,k);
+crypto_onetimeauth_verify(a,m,mlen,k);
+```
 
 This function returns `0` if `a[0]`, `a[1]`, ..., `a[crypto_onetimeauth_BYTES-1]` is a correct authenticator of a message `m[0]`, `m[1]`, ..., `m[mlen-1]` under a secret key `k[0]`, `k[1]`, ..., `k[crypto_onetimeauth_KEYBYTES-1]`. Otherwise `crypto_onetimeauth_verify` returns `-1`.
 

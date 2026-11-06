@@ -4,40 +4,46 @@
 
 C++ NaCl provides a `crypto_box_keypair` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         std::string pk;
-         std::string sk;
-         
-         pk = crypto_box_keypair(&sk);
+```cpp
+#include "crypto_box.h"
+
+std::string pk;
+std::string sk;
+
+pk = crypto_box_keypair(&sk);
+```
 
 The `crypto_box_keypair` function randomly generates a secret key and a corresponding public key. It puts the secret key into `sk` and returns the public key. It guarantees that `sk` has `crypto_box_SECRETKEYBYTES` bytes and that `pk` has `crypto_box_PUBLICKEYBYTES` bytes.
 
 C++ NaCl also provides a `crypto_box` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         std::string pk;
-         std::string sk;
-         std::string n;
-         std::string m;
-         std::string c;
+```cpp
+#include "crypto_box.h"
 
-         c = crypto_box(m,n,pk,sk);
+std::string pk;
+std::string sk;
+std::string n;
+std::string m;
+std::string c;
+
+c = crypto_box(m,n,pk,sk);
+```
 
 The `crypto_box` function encrypts and authenticates a message `m` using the sender's secret key `sk`, the receiver's public key `pk`, and a nonce `n`. The `crypto_box` function returns the resulting ciphertext `c`. The function raises an exception if `sk.size()` is not `crypto_box_SECRETKEYBYTES` or if `pk.size()` is not `crypto_box_PUBLICKEYBYTES` or if `n.size()` is not `crypto_box_NONCEBYTES`.
 
 C++ NaCl also provides a `crypto_box_open` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         std::string pk;
-         std::string sk;
-         std::string n;
-         std::string c;
-         std::string m;
+```cpp
+#include "crypto_box.h"
 
-         m = crypto_box_open(c,n,pk,sk);
+std::string pk;
+std::string sk;
+std::string n;
+std::string c;
+std::string m;
+
+m = crypto_box_open(c,n,pk,sk);
+```
 
 The `crypto_box_open` function verifies and decrypts a ciphertext `c` using the receiver's secret key `sk`, the sender's public key `pk`, and a nonce `n`. The `crypto_box_open` function returns the resulting plaintext `m`.
 
@@ -47,26 +53,30 @@ If the ciphertext fails verification, `crypto_box_open` raises an exception. The
 
 C NaCl provides a `crypto_box_keypair` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         unsigned char pk[crypto_box_PUBLICKEYBYTES];
-         unsigned char sk[crypto_box_SECRETKEYBYTES];
-         
-         crypto_box_keypair(pk,sk);
+```c
+#include "crypto_box.h"
+
+unsigned char pk[crypto_box_PUBLICKEYBYTES];
+unsigned char sk[crypto_box_SECRETKEYBYTES];
+
+crypto_box_keypair(pk,sk);
+```
 
 The `crypto_box_keypair` function randomly generates a secret key and a corresponding public key. It puts the secret key into `sk[0]`, `sk[1]`, ..., `sk[crypto_box_SECRETKEYBYTES-1]` and puts the public key into `pk[0]`, `pk[1]`, ..., `pk[crypto_box_PUBLICKEYBYTES-1]`. It then returns 0.
 
 C NaCl also provides a `crypto_box` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         const unsigned char pk[crypto_box_PUBLICKEYBYTES];
-         const unsigned char sk[crypto_box_SECRETKEYBYTES];
-         const unsigned char n[crypto_box_NONCEBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char c[...];
-         
-         crypto_box(c,m,mlen,n,pk,sk);
+```c
+#include "crypto_box.h"
+
+const unsigned char pk[crypto_box_PUBLICKEYBYTES];
+const unsigned char sk[crypto_box_SECRETKEYBYTES];
+const unsigned char n[crypto_box_NONCEBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char c[...];
+
+crypto_box(c,m,mlen,n,pk,sk);
+```
 
 The `crypto_box` function encrypts and authenticates a message `m[0]`, ..., `m[mlen-1]` using the sender's secret key `sk[0]`, `sk[1]`, ..., `sk[crypto_box_SECRETKEYBYTES-1]`, the receiver's public key `pk[0]`, `pk[1]`, ..., `pk[crypto_box_PUBLICKEYBYTES-1]`, and a nonce `n[0]`, `n[1]`, ..., `n[crypto_box_NONCEBYTES-1]`. The `crypto_box` function puts the ciphertext into `c[0]`, `c[1]`, ..., `c[mlen-1]`. It then returns 0.
 
@@ -76,15 +86,17 @@ Similarly, ciphertexts in the C NaCl API are 0-padded versions of messages in th
 
 C NaCl also provides a `crypto_box_open` function callable as follows:
 
-         #include "crypto_box.h"
-         
-         const unsigned char pk[crypto_box_PUBLICKEYBYTES];
-         const unsigned char sk[crypto_box_SECRETKEYBYTES];
-         const unsigned char n[crypto_box_NONCEBYTES];
-         const unsigned char c[...]; unsigned long long clen;
-         unsigned char m[...];
-         
-         crypto_box_open(m,c,clen,n,pk,sk);
+```c
+#include "crypto_box.h"
+
+const unsigned char pk[crypto_box_PUBLICKEYBYTES];
+const unsigned char sk[crypto_box_SECRETKEYBYTES];
+const unsigned char n[crypto_box_NONCEBYTES];
+const unsigned char c[...]; unsigned long long clen;
+unsigned char m[...];
+
+crypto_box_open(m,c,clen,n,pk,sk);
+```
 
 The `crypto_box_open` function verifies and decrypts a ciphertext `c[0]`, ..., `c[clen-1]` using the receiver's secret key `sk[0]`, `sk[1]`, ..., `sk[crypto_box_SECRETKEYBYTES-1]`, the sender's public key `pk[0]`, `pk[1]`, ..., `pk[crypto_box_PUBLICKEYBYTES-1]`, and a nonce `n[0]`, ..., `n[crypto_box_NONCEBYTES-1]`. The `crypto_box_open` function puts the plaintext into `m[0]`, `m[1]`, ..., `m[clen-1]`. It then returns 0.
 
@@ -98,35 +110,41 @@ Applications that send several messages to the same receiver can gain speed by s
 
 The `crypto_box_beforenm` function is callable as follows:
 
-         #include "crypto_box.h"
-         
-         unsigned char k[crypto_box_BEFORENMBYTES];
-         const unsigned char pk[crypto_box_PUBLICKEYBYTES];
-         const unsigned char sk[crypto_box_SECRETKEYBYTES];
-         
-         crypto_box_beforenm(k,pk,sk);
+```c
+#include "crypto_box.h"
+
+unsigned char k[crypto_box_BEFORENMBYTES];
+const unsigned char pk[crypto_box_PUBLICKEYBYTES];
+const unsigned char sk[crypto_box_SECRETKEYBYTES];
+
+crypto_box_beforenm(k,pk,sk);
+```
 
 The `crypto_box_afternm` function is callable as follows:
 
-         #include "crypto_box.h"
-         
-         const unsigned char k[crypto_box_BEFORENMBYTES];
-         const unsigned char n[crypto_box_NONCEBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char c[...];
-         
-         crypto_box_afternm(c,m,mlen,n,k);
+```c
+#include "crypto_box.h"
+
+const unsigned char k[crypto_box_BEFORENMBYTES];
+const unsigned char n[crypto_box_NONCEBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char c[...];
+
+crypto_box_afternm(c,m,mlen,n,k);
+```
 
 The `crypto_box_open_afternm` function is callable as follows:
 
-         #include "crypto_box.h"
-         
-         const unsigned char k[crypto_box_BEFORENMBYTES];
-         const unsigned char n[crypto_box_NONCEBYTES];
-         const unsigned char c[...]; unsigned long long clen;
-         unsigned char m[...];
-         
-         crypto_box_open_afternm(m,c,clen,n,k);
+```c
+#include "crypto_box.h"
+
+const unsigned char k[crypto_box_BEFORENMBYTES];
+const unsigned char n[crypto_box_NONCEBYTES];
+const unsigned char c[...]; unsigned long long clen;
+unsigned char m[...];
+
+crypto_box_open_afternm(m,c,clen,n,k);
+```
 
 The intermediate data computed by `crypto_box_beforenm` is suitable for both `crypto_box_afternm` and `crypto_box_open_afternm`, and can be reused for any number of messages.
 

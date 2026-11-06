@@ -2,12 +2,14 @@
 
 C NaCl provides a `crypto_verify_16` function callable as follows:
 
-         #include "crypto_verify_16.h"
+```c
+#include "crypto_verify_16.h"
 
-         const unsigned char x[16];
-         const unsigned char y[16];
+const unsigned char x[16];
+const unsigned char y[16];
 
-         crypto_verify_16(x,y);
+crypto_verify_16(x,y);
+```
 
 The `crypto_verify_16` function returns `0` if `x[0]`, `x[1]`, ..., `x[15]` are the same as `y[0]`, `y[1]`, ..., `y[15]`. Otherwise it returns `-1`.
 

@@ -2,10 +2,12 @@
 
 NaCl works on a wide variety of UNIX-like systems, including Linux, BSD, Solaris, etc. Here is how to download and compile NaCl:
 
-         wget https://hyperelliptic.org/nacl/nacl-20110221.tar.bz2
-         bunzip2 < nacl-20110221.tar.bz2 | tar -xf -
-         cd nacl-20110221
-         ./do
+```sh
+wget https://hyperelliptic.org/nacl/nacl-20110221.tar.bz2
+bunzip2 < nacl-20110221.tar.bz2 | tar -xf -
+cd nacl-20110221
+./do
+```
 
 Several machines sharing the same filesystem can compile NaCl simultaneously in the same shared directory. All compilation takes place in a host-specific subdirectory: for example, `build/atlas` on a machine named `atlas`, and `build/katana` on a machine named `katana`.
 

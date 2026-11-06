@@ -4,27 +4,31 @@
 
 C++ NaCl provides a `crypto_stream` function callable as follows:
 
-         #include "crypto_stream.h"
+```cpp
+#include "crypto_stream.h"
 
-         std::string k;
-         std::string n;
-         std::string c;
-         size_t clen;
+std::string k;
+std::string n;
+std::string c;
+size_t clen;
 
-         c = crypto_stream(clen,n,k);
+c = crypto_stream(clen,n,k);
+```
 
 The `crypto_stream` function produces a `clen`-byte stream `c` as a function of a secret key `k` and a nonce `n`. The function raises an exception if `k.size()` is not `crypto_stream_KEYBYTES`. It also raises an exception if `n.size()` is not `crypto_stream_NONCEBYTES`.
 
 C++ NaCl also provides a `crypto_stream_xor` function callable as follows:
 
-         #include "crypto_stream.h"
+```cpp
+#include "crypto_stream.h"
 
-         std::string k;
-         std::string n;
-         std::string m;
-         std::string c;
+std::string k;
+std::string n;
+std::string m;
+std::string c;
 
-         c = crypto_stream_xor(m,n,k);
+c = crypto_stream_xor(m,n,k);
+```
 
 The `crypto_stream_xor` function encrypts a message `m` using a secret key `k` and a nonce `n`. The `crypto_stream_xor` function returns the ciphertext `c`. The function raises an exception if `k.size()` is not `crypto_stream_KEYBYTES`. It also raises an exception if `n.size()` is not `crypto_stream_NONCEBYTES`.
 
@@ -34,26 +38,30 @@ The `crypto_stream_xor` function guarantees that the ciphertext has the same len
 
 C NaCl provides a `crypto_stream` function callable as follows:
 
-         #include "crypto_stream.h"
+```c
+#include "crypto_stream.h"
 
-         const unsigned char k[crypto_stream_KEYBYTES];
-         const unsigned char n[crypto_stream_NONCEBYTES];
-         unsigned char c[...]; unsigned long long clen;
+const unsigned char k[crypto_stream_KEYBYTES];
+const unsigned char n[crypto_stream_NONCEBYTES];
+unsigned char c[...]; unsigned long long clen;
 
-         crypto_stream(c,clen,n,k);
+crypto_stream(c,clen,n,k);
+```
 
 The `crypto_stream` function produces a stream `c[0]`, `c[1]`, ..., `c[clen-1]` as a function of a secret key `k[0]`, `k[1]`, ..., `k[crypto_stream_KEYBYTES-1]` and a nonce `n[0]`, `n[1]`, ..., `n[crypto_stream_NONCEBYTES-1]`. The `crypto_stream` function then returns 0.
 
 C NaCl also provides a `crypto_stream_xor` function callable as follows:
 
-         #include "crypto_stream.h"
+```c
+#include "crypto_stream.h"
 
-         const unsigned char k[crypto_stream_KEYBYTES];
-         const unsigned char n[crypto_stream_NONCEBYTES];
-         unsigned char m[...]; unsigned long long mlen;
-         unsigned char c[...];
+const unsigned char k[crypto_stream_KEYBYTES];
+const unsigned char n[crypto_stream_NONCEBYTES];
+unsigned char m[...]; unsigned long long mlen;
+unsigned char c[...];
 
-         crypto_stream_xor(c,m,mlen,n,k);
+crypto_stream_xor(c,m,mlen,n,k);
+```
 
 The `crypto_stream_xor` function encrypts a message `m[0]`, `m[1]`, ..., `m[mlen-1]` using a secret key `k[0]`, `k[1]`, ..., `k[crypto_stream_KEYBYTES-1]` and a nonce `n[0]`, `n[1]`, ..., `n[crypto_stream_NONCEBYTES-1]`. The `crypto_stream_xor` function puts the ciphertext into `c[0]`, `c[1]`, ..., `c[mlen-1]`. It then returns 0.
 

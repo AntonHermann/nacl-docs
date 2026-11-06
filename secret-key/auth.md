@@ -4,25 +4,29 @@
 
 C++ NaCl provides a `crypto_auth` function callable as follows:
 
-         #include "crypto_auth.h"
+```cpp
+#include "crypto_auth.h"
 
-         std::string k;
-         std::string m;
-         std::string a;
+std::string k;
+std::string m;
+std::string a;
 
-         a = crypto_auth(m,k);
+a = crypto_auth(m,k);
+```
 
 The `crypto_auth` function authenticates a message `m` using a secret key `k`. The function returns an authenticator `a`. The authenticator length is always `crypto_auth_BYTES`. The function raises an exception if `k.size()` is not `crypto_auth_KEYBYTES`.
 
 C++ NaCl also provides a `crypto_auth_verify` function callable as follows:
 
-         #include "crypto_auth.h"
+```cpp
+#include "crypto_auth.h"
 
-         std::string k;
-         std::string m;
-         std::string a;
+std::string k;
+std::string m;
+std::string a;
 
-         crypto_auth_verify(a,m,k);
+crypto_auth_verify(a,m,k);
+```
 
 The `crypto_auth_verify` function checks that `k.size()` is `crypto_auth_KEYBYTES`; `a.size()` is `crypto_auth_BYTES`; and `a` is a correct authenticator of a message `m` under the secret key `k`. If any of these checks fail, the function raises an exception.
 
@@ -30,25 +34,29 @@ The `crypto_auth_verify` function checks that `k.size()` is `crypto_auth_KEYBYTE
 
 C NaCl provides a `crypto_auth` function callable as follows:
 
-         #include "crypto_auth.h"
+```c
+#include "crypto_auth.h"
 
-         const unsigned char k[crypto_auth_KEYBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char a[crypto_auth_BYTES];
+const unsigned char k[crypto_auth_KEYBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char a[crypto_auth_BYTES];
 
-         crypto_auth(a,m,mlen,k);
+crypto_auth(a,m,mlen,k);
+```
 
 The `crypto_auth` function authenticates a message `m[0]`, `m[1]`, ..., `m[mlen-1]` using a secret key `k[0]`, `k[1]`, ..., `k[crypto_auth_KEYBYTES-1]`. The `crypto_auth` function puts the authenticator into `a[0]`, `a[1]`, ..., `a[crypto_auth_BYTES-1]`. It then returns 0.
 
 C NaCl also provides a `crypto_auth_verify` function callable as follows:
 
-         #include "crypto_auth.h"
+```c
+#include "crypto_auth.h"
 
-         const unsigned char k[crypto_auth_KEYBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         const unsigned char a[crypto_auth_BYTES];
+const unsigned char k[crypto_auth_KEYBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+const unsigned char a[crypto_auth_BYTES];
 
-         crypto_auth_verify(a,m,mlen,k);
+crypto_auth_verify(a,m,mlen,k);
+```
 
 The `crypto_auth_verify` function returns `0` if `a[0]`, ..., `a[crypto_auth_BYTES-1]` is a correct authenticator of a message `m[0]`, `m[1]`, ..., `m[mlen-1]` under a secret key `k[0]`, `k[1]`, ..., `k[crypto_auth_KEYBYTES-1]`. Otherwise `crypto_auth_verify` returns `-1`.
 

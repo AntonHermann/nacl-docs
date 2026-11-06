@@ -4,12 +4,14 @@
 
 C++ NaCl provides a `crypto_hash` function callable as follows:
 
-         #include "crypto_hash.h"
+```cpp
+#include "crypto_hash.h"
 
-         std::string m;
-         std::string h;
+std::string m;
+std::string h;
 
-         h = crypto_hash(m);
+h = crypto_hash(m);
+```
 
 The `crypto_hash` function hashes a message `m`. It returns a hash `h`. The output length `h.size()` is always `crypto_hash_BYTES`.
 
@@ -17,12 +19,14 @@ The `crypto_hash` function hashes a message `m`. It returns a hash `h`. The outp
 
 C NaCl provides a `crypto_hash` function callable as follows:
 
-         #include "crypto_hash.h"
+```c
+#include "crypto_hash.h"
 
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char h[crypto_hash_BYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char h[crypto_hash_BYTES];
 
-         crypto_hash(h,m,mlen);
+crypto_hash(h,m,mlen);
+```
 
 The `crypto_hash` function hashes a message `m[0]`, `m[1]`, ..., `m[mlen-1]`. It puts the hash into `h[0]`, `h[1]`, ..., `h[crypto_hash_BYTES-1]`. It then returns 0.
 

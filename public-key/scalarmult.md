@@ -4,24 +4,28 @@
 
 C++ NaCl provides a `crypto_scalarmult` function callable as follows:
 
-         #include "crypto_scalarmult.h"
+```cpp
+#include "crypto_scalarmult.h"
 
-         std::string p;
-         std::string n;
-         std::string q;
+std::string p;
+std::string n;
+std::string q;
 
-         q = crypto_scalarmult(n,p);
+q = crypto_scalarmult(n,p);
+```
 
 This function multiplies a group element `p` by an integer `n`. It returns the resulting group element `q` of length `crypto_scalarmult_BYTES`. The function raises an exception if `p.size()` is not `crypto_scalarmult_BYTES`. It also raises an exception if `n.size()` is not `crypto_scalarmult_SCALARBYTES`.
 
 C++ NaCl also provides a `crypto_scalarmult_base` function callable as follows:
 
-         #include "crypto_scalarmult.h"
+```cpp
+#include "crypto_scalarmult.h"
 
-         std::string n;
-         std::string q;
+std::string n;
+std::string q;
 
-         q = crypto_scalarmult_base(n);
+q = crypto_scalarmult_base(n);
+```
 
 The `crypto_scalarmult_base` function computes the scalar product of a standard group element and an integer `n`. It returns the resulting group element `q` of length `crypto_scalarmult_BYTES`. It raises an exception if `n.size()` is not `crypto_scalarmult_SCALARBYTES`.
 
@@ -29,24 +33,28 @@ The `crypto_scalarmult_base` function computes the scalar product of a standard 
 
 C NaCl provides a `crypto_scalarmult` function callable as follows:
 
-         #include "crypto_scalarmult.h"
+```c
+#include "crypto_scalarmult.h"
 
-         const unsigned char p[crypto_scalarmult_BYTES];
-         const unsigned char n[crypto_scalarmult_SCALARBYTES];
-         unsigned char q[crypto_scalarmult_BYTES];
+const unsigned char p[crypto_scalarmult_BYTES];
+const unsigned char n[crypto_scalarmult_SCALARBYTES];
+unsigned char q[crypto_scalarmult_BYTES];
 
-         crypto_scalarmult(q,n,p);
+crypto_scalarmult(q,n,p);
+```
 
 This function multiplies a group element `p[0]`, ..., `p[crypto_scalarmult_BYTES-1]` by an integer `n[0]`, ..., `n[crypto_scalarmult_SCALARBYTES-1]`. It puts the resulting group element into `q[0]`, ..., `q[crypto_scalarmult_BYTES-1]` and returns 0.
 
 C NaCl also provides a `crypto_scalarmult_base` function callable as follows:
 
-         #include "crypto_scalarmult.h"
+```c
+#include "crypto_scalarmult.h"
 
-         const unsigned char n[crypto_scalarmult_SCALARBYTES];
-         unsigned char q[crypto_scalarmult_BYTES];
+const unsigned char n[crypto_scalarmult_SCALARBYTES];
+unsigned char q[crypto_scalarmult_BYTES];
 
-         crypto_scalarmult_base(q,n);
+crypto_scalarmult_base(q,n);
+```
 
 The `crypto_scalarmult_base` function computes the scalar product of a standard group element and an integer `n[0]`, ..., `n[crypto_scalarmult_SCALARBYTES-1]`. It puts the resulting group element into `q[0]`, ..., `q[crypto_scalarmult_BYTES-1]` and returns 0.
 

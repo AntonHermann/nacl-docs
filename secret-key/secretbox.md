@@ -4,27 +4,31 @@
 
 C++ NaCl provides a `crypto_secretbox` function callable as follows:
 
-         #include "crypto_secretbox.h"
+```cpp
+#include "crypto_secretbox.h"
 
-         std::string k;
-         std::string n;
-         std::string m;
-         std::string c;
+std::string k;
+std::string n;
+std::string m;
+std::string c;
 
-         c = crypto_secretbox(m,n,k);
+c = crypto_secretbox(m,n,k);
+```
 
 The `crypto_secretbox` function encrypts and authenticates a message `m` using a secret key `k` and a nonce `n`. The `crypto_secretbox` function returns the resulting ciphertext `c`. The function raises an exception if `k.size()` is not `crypto_secretbox_KEYBYTES`. The function also raises an exception if `n.size()` is not `crypto_secretbox_NONCEBYTES`.
 
 C++ NaCl also provides a `crypto_secretbox_open` function callable as follows:
 
-         #include "crypto_secretbox.h"
+```cpp
+#include "crypto_secretbox.h"
 
-         std::string k;
-         std::string n;
-         std::string c;
-         std::string m;
+std::string k;
+std::string n;
+std::string c;
+std::string m;
 
-         m = crypto_secretbox_open(c,n,k);
+m = crypto_secretbox_open(c,n,k);
+```
 
 The `crypto_secretbox_open` function verifies and decrypts a ciphertext `c` using a secret key `k` and a nonce `n`. The `crypto_secretbox_open` function returns the resulting plaintext `m`.
 
@@ -34,14 +38,16 @@ If the ciphertext fails verification, `crypto_secretbox_open` raises an exceptio
 
 C NaCl provides a `crypto_secretbox` function callable as follows:
 
-         #include "crypto_secretbox.h"
+```c
+#include "crypto_secretbox.h"
 
-         const unsigned char k[crypto_secretbox_KEYBYTES];
-         const unsigned char n[crypto_secretbox_NONCEBYTES];
-         const unsigned char m[...]; unsigned long long mlen;
-         unsigned char c[...]; unsigned long long clen;
+const unsigned char k[crypto_secretbox_KEYBYTES];
+const unsigned char n[crypto_secretbox_NONCEBYTES];
+const unsigned char m[...]; unsigned long long mlen;
+unsigned char c[...]; unsigned long long clen;
 
-         crypto_secretbox(c,m,mlen,n,k);
+crypto_secretbox(c,m,mlen,n,k);
+```
 
 The `crypto_secretbox` function encrypts and authenticates a message `m[0]`, `m[1]`, ..., `m[mlen-1]` using a secret key `k[0]`, ..., `k[crypto_secretbox_KEYBYTES-1]` and a nonce `n[0]`, `n[1]`, ..., `n[crypto_secretbox_NONCEBYTES-1]`. The `crypto_secretbox` function puts the ciphertext into `c[0]`, `c[1]`, ..., `c[mlen-1]`. It then returns 0.
 
@@ -51,14 +57,16 @@ Similarly, ciphertexts in the C NaCl API are 0-padded versions of messages in th
 
 C NaCl also provides a `crypto_secretbox_open` function callable as follows:
 
-         #include "crypto_secretbox.h"
+```c
+#include "crypto_secretbox.h"
 
-         const unsigned char k[crypto_secretbox_KEYBYTES];
-         const unsigned char n[crypto_secretbox_NONCEBYTES];
-         const unsigned char c[...]; unsigned long long clen;
-         unsigned char m[...];
+const unsigned char k[crypto_secretbox_KEYBYTES];
+const unsigned char n[crypto_secretbox_NONCEBYTES];
+const unsigned char c[...]; unsigned long long clen;
+unsigned char m[...];
 
-         crypto_secretbox_open(m,c,clen,n,k);
+crypto_secretbox_open(m,c,clen,n,k);
+```
 
 The `crypto_secretbox_open` function verifies and decrypts a ciphertext `c[0]`, `c[1]`, ..., `c[clen-1]` using a secret key `k[0]`, `k[1]`, ..., `k[crypto_secretbox_KEYBYTES-1]` and a nonce `n[0]`, ..., `n[crypto_secretbox_NONCEBYTES-1]`. The `crypto_secretbox_open` function puts the plaintext into `m[0]`, `m[1]`, ..., `m[clen-1]`. It then returns 0.
 
